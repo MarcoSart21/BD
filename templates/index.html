@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+    <title></title>
+</head>
+<body>
+    <div class="encabezado">
+        <ul> 
+            <li>SOFTNESS</li>
+            <li>notificacion de error</li>
+            <li>Cambiar Color</li>
+
+        </ul>
+    </div>
+
+    <div class="cuerpo">
+        <div class="elemento">
+            <h1>Crea una base de datos SQL,</h1>
+            <hr>siguiendo este flujo
+
+            <div>
+                <input type="text" name="create" size= "50" value="Crea tu base de Datos(CREATE DATABASE)">
+                <input type="text" name="use" size= "50" value="Ubicate en tu base de datos(USE)">
+                <input type="text" name="create-table" size= "50" value="Crea una tabla en tu base de Datos(CREATE TABLE)">
+                <input type="text" name="insert-into" size= "50" value="Añade entradas a tu base de datos(INSERT INTO)">
+                <input type="text" name="delete" size= "50" value="Elimina en tu base de Datos(DELETE)">
+            </div>
+            <button onclick="analizar_lexico()">Analizar</button>
+        </div>
+
+        <div>
+            <h1>Aqui va la imagen</h1>
+        </div>
+    </div>
+    
+    <div id="Resultados"></div>
+    <script>
+        function analizar_lexico(){
+            const Resultados = document.getElementById("Resultados");
+            
+            var hola = "Hola Mundo"
+
+            document.getElementById('Resultados').innerHTML = hola;
+        }
+
+    </script>
+</body>
+</html>
