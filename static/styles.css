@@ -26,8 +26,3 @@ div{
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas flexibles */
     gap: 10px; /* Espacio entre los elementos */
 }
-
-.elemento {
-    padding: 10px;
-    border: 1px solid black;
-}
