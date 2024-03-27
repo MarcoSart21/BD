@@ -4,7 +4,7 @@ body{
 
 div{
     margin: 30px;
-    border: 1px solid black; 
+    /*border: 1px solid black;*/
     background-color:#303750;
     color: aliceblue;
     padding: 10px;
@@ -36,6 +36,9 @@ div{
 .cuerpo button{
     background-color:#303750;
     color: aliceblue;
+    border-radius: 10px;
+    padding: 10px;
+
 }
 
 #logoBD{
@@ -50,7 +53,8 @@ h2{
     color: aliceblue;
 }
 input{ 
+    border-radius: 10px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1), 0 1px 0 rgba(39, 45, 77, 0.5);
+    padding: 10px;
     color: aliceblue;
-    width: 100%; /* Establece el ancho del input al 100% del contenedor */
-    box-sizing: border-box;
 }
