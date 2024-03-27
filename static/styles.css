@@ -3,9 +3,10 @@ body{
 }
 
 div{
-    margin: 30px; /* Márgenes de 30px en todas las direcciones */
+     margin: 30px; /* Márgenes de 30px en todas las direcciones */
     border: 1px solid black; /* Borde sólido de 1px de color negro */
-    background-color:#1F2640;
+    background-color:#303750;
+    color: aliceblue;
     padding: 10px;
 }
 
@@ -21,10 +22,11 @@ div{
 }
 
 .cuerpo input{
-    background-color: #1F2640;
+    background-color:#303750;
 }
 .cuerpo button{
-    background-color: #1F2640;
+    background-color:#303750;
+    color: aliceblue;
 }
 .cuerpo{
     display: grid; /* Usar CSS Grid */
@@ -35,4 +37,13 @@ div{
 #logoBD{
     width: 300px;
     height: 300px;
+
 }
+h1{
+    color: aliceblue;
+}
+h2{
+    color: aliceblue;
+}
+input{ color: aliceblue;}
+
