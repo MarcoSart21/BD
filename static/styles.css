@@ -1,14 +1,17 @@
 body{
-    background-color: white ;
+    background-color: #1F2640;
 }
+
 
 
 div{
     margin: 30px; /* Márgenes de 30px en todas las direcciones */
     border: 1px solid black; /* Borde sólido de 1px de color negro */
-    background-color: #f0f0f0;
+    background-color:#1F2640;
     padding: 10px;
 }
+
+
 
 .encabezado ul{
     list-style-type: none; /* Quita los marcadores de lista */
@@ -21,6 +24,14 @@ div{
     margin-right: 520px; /* Espacio entre elementos */
 }
 
+
+
+.cuerpo input{
+    background-color: #1F2640;
+}
+.cuerpo button{
+    background-color: #1F2640;
+}
 .cuerpo{
     display: grid; /* Usar CSS Grid */
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Columnas flexibles */
