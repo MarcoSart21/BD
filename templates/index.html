@@ -9,25 +9,26 @@
 <body>
     <div class="encabezado">
 
-        <div>
+        <div class="info">
+            <img src="/static/assets/logo2.png" alt="softnes" id="soft">
             <h3>SOFTNESS</h3>
         </div>
-        <div>
-            <h3>Cambiar Color</h3>
+        <div class="color">
+            <button onclick="mover">Cambiar Color</button>
         </div>
     </div>
 
     <div class="cuerpo">
         <div>
-            <h1>Crea una base de datos SQL,</h1>
-            <h2>siguiendo este flujo</h2>
+            <p id="crear">Crea una base de datos SQL,</p>
+            <p id="siguiendo">siguiendo este flujo...</p>
 
             <div>
-                <input type="text" name="create" size= "50" value="Crea tu base de Datos(CREATE DATABASE)">
-                <input type="text" name="use" size= "50" value="Ubicate en tu base de datos(USE)">
-                <input type="text" name="create-table" size= "50" value="Crea una tabla en tu base de Datos(CREATE TABLE)">
-                <input type="text" name="insert-into" size= "50" value="Añade entradas a tu base de datos(INSERT INTO)">
-                <input type="text" name="delete" size= "50" value="Elimina en tu base de Datos(DELETE)">
+                <input type="text" name="create" size= "50" value="1.- Crea tu base de Datos(CREATE DATABASE)">
+                <input type="text" name="use" size= "50" value="2.- Ubícate en tu base de datos(USE)">
+                <input type="text" name="create-table" size= "50" value="3.- Crea una tabla en tu base de Datos(CREATE TABLE)">
+                <input type="text" name="insert-into" size= "50" value="4.- Añade entradas a tu base de datos(INSERT INTO)">
+                <input type="text" name="delete" size= "50" value="5.- Elimina en tu base de Datos(DELETE)">
             </div>
             <button onclick="analizar_lexico()">Analizar</button>
         </div>
