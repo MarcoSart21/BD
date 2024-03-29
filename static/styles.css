@@ -20,8 +20,17 @@ div{
     display: flex;
 }
 
-.color{
+
+#color{
     text-align: right;
+}
+
+#cambio{
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 .encabezado{
@@ -92,4 +101,18 @@ input{
     width: 30px;
     height: 30px;
     border-radius: 10px;
+
+}
+
+paleta de colores{
+    
+    color: #1F2640;
+    color: #303750;
+    color:#fff;
+    color: #dbdbdb;
+    color: #aaaaaa;
+    color: goldenrod;
+    color: black;
+    color: #475175;
+
 }

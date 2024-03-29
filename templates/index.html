@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}" width="10" height="10">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
     <title></title>
+    <link rel="stylesheet" href="../static/styles.css">
 </head>
-<body>
-    <div class="encabezado">
+<body id="body">
+    <div class="encabezado" id="divsACambiar">
 
         <div class="info">
             <img src="/static/assets/logo2.png" alt="softnes" id="soft">
             <h3>SOFTNESS</h3>
         </div>
-        <div class="color">
-            <button onclick="mover">Cambiar Color</button>
+        <div id="color">
+            <button onclick="cambiarColor()" id="cambio" style="background-color: rgb(133, 133, 133); color: rgb(255, 255, 255);">Cambiar Color</button>
         </div>
     </div>
 
-    <div class="cuerpo">
-        <div>
+    <div class="cuerpo" id="divsACambiar">
+        <div style="background-color: #303750;" id="divsACambiar">
             <p id="crear">Crea una base de datos SQL,</p>
             <p id="siguiendo">siguiendo este flujo...</p>
 
-            <div>
+            <div id="divsACambiar">
                 <input type="text" name="create" size= "50" value="1.- Crea tu base de Datos(CREATE DATABASE)">
                 <input type="text" name="use" size= "50" value="2.- Ubícate en tu base de datos(USE)">
                 <input type="text" name="create-table" size= "50" value="3.- Crea una tabla en tu base de Datos(CREATE TABLE)">
@@ -39,16 +40,59 @@
         </div>
     </div>
     
-    <div id="Resultados"></div>
-    <script>
-        function analizar_lexico(){
-            const Resultados = document.getElementById("Resultados");
-            
-            var hola = "Hola Mundo"
+    <div id="Resultados" class="cuerpo"></div>
 
-            document.getElementById('Resultados').innerHTML = hola;
+<script>
+    var colorCambiado = false;
+
+    // Función para cambiar/restaurar el color del body, texto, inputs y otros divs
+    function cambiarColor() {
+        var body = document.getElementById('body');
+        var divsACambiar = document.querySelectorAll('#divsACambiar > div');
+        var divsCambiarScript = document.getElementById('divsACambiar');
+        var inputs = document.querySelectorAll('input');
+        var boton = document.getElementById('cambio');
+
+        if (!colorCambiado) {
+            body.style.backgroundColor = '#dbdbdb'; // Cambia el color de fondo del body
+            body.style.color = 'black'; // Cambia el color del texto del body
+            divsACambiar.forEach(div => {
+                div.style.backgroundColor = '#aaaaaa'; // Cambia el color de fondo de los divs
+                div.style.color = 'black'; // Cambia el color del texto de los divs
+            });
+            divsCambiarScript.style.backgroundColor = '#aaaaaa'; // Cambia el color del div del script
+            inputs.forEach(input => {
+                input.style.backgroundColor = '#aaaaaa'; // Cambia el color de fondo de los inputs
+                input.style.color = 'black'; // Cambia el color del texto de los inputs
+            });
+            boton.style.backgroundColor = '#475175'; // Cambia el color del botón
+            boton.style.color = 'white'; // Cambia el color del texto del botón
+            colorCambiado = true; // Actualiza el estado del botón
+        } else {
+            body.style.backgroundColor = '#1F2640'; //fondo del body
+            body.style.color = 'white'; //color del texto del body
+            divsACambiar.forEach(div => {
+                div.style.backgroundColor = '#303750'; //fondo de los divs
+                div.style.color = 'white'; // Restaura el color del texto de los divs
+            });
+            divsCambiarScript.style.backgroundColor = '#303750'; // Restaura el color del div del script
+            inputs.forEach(input => {
+                input.style.backgroundColor = '#303750'; // Restaura el color de fondo de los inputs
+                input.style.color = 'white'; // Restaura el color del texto de los inputs
+            });
+            boton.style.backgroundColor = 'rgb(133, 133, 133)'; // Restaura el color del botón
+            boton.style.color = 'white'; // Restaura el color del texto del botón
+            colorCambiado = false; // Actualiza el estado del botón
         }
+    }
 
-    </script>
+    function analizar_lexico(){
+        const Resultados = document.getElementById("Resultados");
+        
+        var hola = "Hola Mundo"
+
+        document.getElementById('Resultados').innerHTML = hola;
+    }
+</script>
 </body>
 </html>
