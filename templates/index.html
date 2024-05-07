@@ -1,98 +1,159 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
-    <title></title>
+    <title>Lexico resultado</title>
+    <link rel="stylesheet" href="static/styles.css">
     <link rel="stylesheet" href="../static/styles.css">
 </head>
-<body id="body">
-    <div class="encabezado" id="divsACambiar">
 
+<body id="body">
+    <div class="encabezado" id="encabezado">
         <div class="info">
             <img src="/static/assets/logo2.png" alt="softnes" id="soft">
             <h3>SOFTNESS</h3>
         </div>
         <div id="color">
-            <button onclick="cambiarColor()" id="cambio" style="background-color: rgb(133, 133, 133); color: rgb(255, 255, 255);">Cambiar Color</button>
+            <button onclick="cambiarColor()" id="cambio"
+                style="background-color: rgb(133, 133, 133); color: rgb(255, 255, 255);">Cambiar Color</button>
         </div>
     </div>
 
-    <div class="cuerpo" id="divsACambiar">
-        <div style="background-color: #303750;" id="divsACambiar">
+    <div class="cuerpo" id="cuerpo">
+        <div style="background-color: #303750;" id="contenido">
             <p id="crear">Crea una base de datos SQL,</p>
             <p id="siguiendo">siguiendo este flujo...</p>
 
-            <div id="divsACambiar">
-                <input type="text" name="create" size= "50" value="1.- Crea tu base de Datos(CREATE DATABASE)">
-                <input type="text" name="use" size= "50" value="2.- Ubícate en tu base de datos(USE)">
-                <input type="text" name="create-table" size= "50" value="3.- Crea una tabla en tu base de Datos(CREATE TABLE)">
-                <input type="text" name="insert-into" size= "50" value="4.- Añade entradas a tu base de datos(INSERT INTO)">
-                <input type="text" name="delete" size= "50" value="5.- Elimina en tu base de Datos(DELETE)">
+            <div>
+                <input type="text" name="createDatabase" size="50"
+                    placeholder="1.- Crea tu base de Datos(CREATE DATABASE)">
+                <input type="text" name="useDatabase" size="50" placeholder="2.- Ubícate en tu base de datos(USE)">
+                <input type="text" name="createTable" size="50"
+                    placeholder="3.- Crea una tabla en tu base de Datos(CREATE TABLE)">
+                <input type="text" name="insertRecord" size="50"
+                    placeholder="4.- Añade entradas a tu base de datos(INSERT INTO)">
+                <input type="text" name="updateRecord" size="50"
+                    placeholder="5.- Modifica o elimina tus entradas (UPDATE, DELETE)">
+                <input type="text" name="dropDatabase" size="50" placeholder="6.- Elimina tu base de datos (DROP)">
+
             </div>
-            <button onclick="analizar_lexico()">Analizar</button>
+            <button onclick="analyzeLexical()">Análisis Léxico</button>
+            <button onclick="analyzeSyntax()">Análisis Sintáctico</button>
         </div>
 
         <div>
-            
             <img src="/static/assets/logo_sql.png" alt="imagen_BD" id="logoBD">
         </div>
     </div>
-    
-    <div id="Resultados" class="cuerpo"></div>
 
-<script>
-    var colorCambiado = false;
+    <div id="resultContainer"></div>
+    <script>
+        function analyzeLexical() {
+            const createDatabaseCode = document.getElementsByName('createDatabase')[0].value;
+            const useDatabaseCode = document.getElementsByName('useDatabase')[0].value;
+            const createTableCode = document.getElementsByName('createTable')[0].value;
+            const insertRecordCode = document.getElementsByName('insertRecord')[0].value;
+            const updateRecordCode = document.getElementsByName('updateRecord')[0].value;
+            const dropDatabaseCode = document.getElementsByName('dropDatabase')[0].value;
 
-    // Función para cambiar/restaurar el color del body, texto, inputs y otros divs
-    function cambiarColor() {
-        var body = document.getElementById('body');
-        var divsACambiar = document.querySelectorAll('#divsACambiar > div');
-        var divsCambiarScript = document.getElementById('divsACambiar');
-        var inputs = document.querySelectorAll('input');
-        var boton = document.getElementById('cambio');
+            let code = "";
+            if (createDatabaseCode.trim() !== "") {
+                code += createDatabaseCode + "\n";
+            }
+            if (useDatabaseCode.trim() !== "") {
+                code += useDatabaseCode + "\n";
+            }
+            if (createTableCode.trim() !== "") {
+                code += createTableCode + "\n";
+            }
+            if (insertRecordCode.trim() !== "") {
+                code += insertRecordCode + "\n";
+            }
+            if (updateRecordCode.trim() !== "") {
+                code += updateRecordCode + "\n";
+            }
+            if (dropDatabaseCode.trim() !== "") {
+                code += dropDatabaseCode + "\n";
+            }
 
-        if (!colorCambiado) {
-            body.style.backgroundColor = '#dbdbdb'; // Cambia el color de fondo del body
-            body.style.color = 'black'; // Cambia el color del texto del body
-            divsACambiar.forEach(div => {
-                div.style.backgroundColor = '#aaaaaa'; // Cambia el color de fondo de los divs
-                div.style.color = 'black'; // Cambia el color del texto de los divs
-            });
-            divsCambiarScript.style.backgroundColor = '#aaaaaa'; // Cambia el color del div del script
-            inputs.forEach(input => {
-                input.style.backgroundColor = '#aaaaaa'; // Cambia el color de fondo de los inputs
-                input.style.color = 'black'; // Cambia el color del texto de los inputs
-            });
-            boton.style.backgroundColor = '#475175'; // Cambia el color del botón
-            boton.style.color = 'white'; // Cambia el color del texto del botón
-            colorCambiado = true; // Actualiza el estado del botón
-        } else {
-            body.style.backgroundColor = '#1F2640'; //fondo del body
-            body.style.color = 'white'; //color del texto del body
-            divsACambiar.forEach(div => {
-                div.style.backgroundColor = '#303750'; //fondo de los divs
-                div.style.color = 'white'; // Restaura el color del texto de los divs
-            });
-            divsCambiarScript.style.backgroundColor = '#303750'; // Restaura el color del div del script
-            inputs.forEach(input => {
-                input.style.backgroundColor = '#303750'; // Restaura el color de fondo de los inputs
-                input.style.color = 'white'; // Restaura el color del texto de los inputs
-            });
-            boton.style.backgroundColor = 'rgb(133, 133, 133)'; // Restaura el color del botón
-            boton.style.color = 'white'; // Restaura el color del texto del botón
-            colorCambiado = false; // Actualiza el estado del botón
+            fetch('/api/v1/lexer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ code: code }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('HTTP error! Status: ${response.status}');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('resultContainer').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
         }
-    }
 
-    function analizar_lexico(){
-        const Resultados = document.getElementById("Resultados");
-        
-        var hola = "Hola Mundo"
+        function analyzeSyntax() {
+            const createDatabaseCode = document.getElementsByName('createDatabase')[0].value;
+            const useDatabaseCode = document.getElementsByName('useDatabase')[0].value;
+            const createTableCode = document.getElementsByName('createTable')[0].value;
+            const insertRecordCode = document.getElementsByName('insertRecord')[0].value;
+            const updateRecordCode = document.getElementsByName('updateRecord')[0].value;
+            const dropDatabaseCode = document.getElementsByName('dropDatabase')[0].value;
 
-        document.getElementById('Resultados').innerHTML = hola;
-    }
-</script>
+            let code = "";
+            let commandType = "";
+
+            if (createDatabaseCode.trim() !== "") {
+                code += createDatabaseCode + "\n";
+                commandType = "createDatabase";
+            }
+            else if (useDatabaseCode.trim() !== "") {
+                code += useDatabaseCode + "\n";
+                commandType = "useDatabase";
+            }
+            else if (createTableCode.trim() !== "") {
+                code += createTableCode + "\n";
+                commandType = "createTable";
+            }
+            else if (insertRecordCode.trim() !== "") {
+                code += insertRecordCode + "\n";
+                commandType = "insertRecord";
+            }
+            else if (updateRecordCode.trim() !== "") {
+                code += updateRecordCode + "\n";
+                commandType = "updateRecord";
+            }
+            else if (dropDatabaseCode.trim() !== "") {
+                code += dropDatabaseCode + "\n";
+                commandType = "dropDatabase";
+            }
+
+            fetch('/api/v1/parser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ code: code, commandType: commandType }),
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('HTTP error! Status: ${response.status}');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById('resultContainer').innerHTML = data;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+    </script>
+
 </body>
+
 </html>
